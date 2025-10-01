@@ -7,59 +7,20 @@ warnings.filterwarnings('ignore')
 
 
 ipl = pd.read_csv('IPL.csv')
-# print(ipl.info())
+print(ipl.info())
+
+# match wins by team
 match_wins = ipl['match_winner'].value_counts()
-# sns.barplot(y= match_wins.index,x= match_wins.values,palette= ['blue','green','red'])
-# plt.title("MATCHES WIN BY TEAM")
-# plt.xlabel(" no of wins")
-# plt.ylabel("team Names")
+sns.barplot(y= match_wins.index,x= match_wins.values,palette= ['blue','green','red'])
+plt.title("MATCHES WIN BY TEAM")
+plt.xlabel(" no of wins")
+plt.ylabel("team Names")
 
-# sns.countplot(x=ipl['toss_decision'],palette='rainbow')
-# plt.title('TOSS')
-# plt.ylabel("toss_decision")
-
-
-ipl.head()
-# win = ipl[ipl['match_winner'] == ipl['toss_winner']]['match_id'].count()
-# sns.histplot(data=win,x='toss_winner',hue='match_winner')
-# per = (win/len(ipl))*100
-# print(per)
-
-# wins = ipl['won_by'].value_counts()
-# sns.countplot(x=ipl['won_by'])
-# plt.title('Win by')
-
-# ipl.head()
-# pom = ipl['player_of_the_match'].value_counts().head(10)
-# sns.barplot(y=pom.index,x=pom,palette='rainbow')
-# # print(pom)
+# toss decesion
+sns.countplot(x=ipl['toss_decision'],palette='rainbow')
+plt.title('TOSS')
+plt.ylabel("toss_decision")
 
 
-# ipl.head()
-# high = ipl.groupby('top_scorer')['highscore'].sum().sort_values(ascending=False).head(2)
-# print(high)
-# high.plot(kind='barh')
-
-
-
-# Top bowler
-ipl['highest_wicket']=ipl['best_bowling_figure'].apply(lambda x:x.split('-')[0])
-ipl['highest_wicket']=ipl['highest_wicket'].astype(int)
-
-top_bowler = ipl.groupby('best_bowling')['highest_wicket'].sum().sort_values(ascending=False).head(10)
-top_bowler.plot(kind='bar')
-print(top_bowler)
-
-
-highest = ipl['venue'].value_counts()
-highest
-sns.barplot(y=highest.index, x=highest, palette='rainbow')
-
-
-#
-# ipl[ipl['won_by']=='Runs'].sort_values(by=['margin'], ascending=False).head()[['match_winner', 'margin']]
-# ipl[ipl['highscore']==ipl['highscore'].max()][['highscore','top_scorer']]
-
-
-ipl.head()
-ipl[ipl['highest_wicket']==ipl['highest_wicket'].max()][['best_bowling','best_bowling_figure']]
+# team that win match and toss
+win = ipl[ipl[
